@@ -1095,103 +1095,112 @@
         </div>
       </div>
     </div>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    // Навигация
-    const menuToggle = document.querySelector(".menu-toggle"),
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Навигация
+        const menuToggle = document.querySelector(".menu-toggle"),
           navMenu = document.querySelector("nav ul");
 
-    menuToggle?.addEventListener("click", () => navMenu.classList.toggle("active"));
+        menuToggle?.addEventListener("click", () =>
+          navMenu.classList.toggle("active")
+        );
 
-    // Плавная прокрутка
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function(e) {
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
             if (this.hash === "#") return;
             e.preventDefault();
             const target = document.querySelector(this.hash);
             if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80,
-                    behavior: "smooth"
-                });
+              window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: "smooth",
+              });
 
-                if (navMenu?.classList.contains("active")) {
-                    navMenu.classList.remove("active");
-                }
+              if (navMenu?.classList.contains("active")) {
+                navMenu.classList.remove("active");
+              }
             }
+          });
         });
-    });
-    // Валидация формы записи
-    document.querySelector("#appointment form")?.addEventListener("submit", e => {
-        e.preventDefault();
-        alert("Заявка отправлена! Свяжусь с вами в ближайшее время.");
-        e.target.reset();
-    });
-    // Модальное окно
-    const loginModal = document.getElementById("login-modal"),
+        // Валидация формы записи
+        document
+          .querySelector("#appointment form")
+          ?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("Заявка отправлена! Свяжусь с вами в ближайшее время.");
+            e.target.reset();
+          });
+        // Модальное окно
+        const loginModal = document.getElementById("login-modal"),
           loginLink = document.getElementById("login-link"),
           closeModal = document.querySelector(".close-modal");
-    loginLink?.addEventListener("click", (e) => {
-        e.preventDefault();
-        loginModal?.classList.add("active");
-        document.body.style.overflow = "hidden";
-    });
-    closeModal?.addEventListener("click", () => {
-        loginModal?.classList.remove("active");
-        document.body.style.overflow = "";
-    });
-    loginModal?.addEventListener("click", (e) => {
-        if (e.target === loginModal) {
+        loginLink?.addEventListener("click", (e) => {
+          e.preventDefault();
+          loginModal?.classList.add("active");
+          document.body.style.overflow = "hidden";
+        });
+        closeModal?.addEventListener("click", () => {
+          loginModal?.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+        loginModal?.addEventListener("click", (e) => {
+          if (e.target === loginModal) {
             loginModal.classList.remove("active");
             document.body.style.overflow = "";
-        }
-    });
-    // Валидация формы входа
-    const loginForm = document.querySelector("#login-modal form");
-    loginForm?.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const username = document.getElementById("username")?.value;
-        const password = document.getElementById("password")?.value;
-        if (username && password) {
+          }
+        });
+        // Валидация формы входа
+        const loginForm = document.querySelector("#login-modal form");
+        loginForm?.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const username = document.getElementById("username")?.value;
+          const password = document.getElementById("password")?.value;
+          if (username && password) {
             alert("Вход выполнен успешно! Добро пожаловать в личный кабинет.");
             loginModal?.classList.remove("active");
             document.body.style.overflow = "";
-        } else {
+          } else {
             alert("Пожалуйста, заполните все поля.");
-        }
-    });
-    // Слайдер
-    const slider = document.querySelector(".slider-container"),
+          }
+        });
+        // Слайдер
+        const slider = document.querySelector(".slider-container"),
           slides = document.querySelectorAll(".slider-slide"),
           dots = document.querySelectorAll(".slider-dot"),
           prevBtn = document.querySelector(".slider-prev"),
           nextBtn = document.querySelector(".slider-next");
-    let currentIndex = 0;
-    function updateSlider() {
-        if (slider) {
+        let currentIndex = 0;
+        function updateSlider() {
+          if (slider) {
             slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            dots.forEach((dot, i) => dot.classList.toggle("active", i === currentIndex));
+            dots.forEach((dot, i) =>
+              dot.classList.toggle("active", i === currentIndex)
+            );
+          }
         }
-    }
-    dots.forEach((dot, i) => {
-        dot.addEventListener("click", () => {
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => {
             currentIndex = i;
             updateSlider();
+          });
         });
-    });
-    prevBtn?.addEventListener("click", () => {
-        currentIndex = currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
-        updateSlider();
-    });
-    nextBtn?.addEventListener("click", () => {
-        currentIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
-        updateSlider();
-    });
-    setInterval(() => {
-        currentIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
-        updateSlider();
-    }, 5000);
-});
-</script>
+        prevBtn?.addEventListener("click", () => {
+          currentIndex =
+            currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
+          updateSlider();
+        });
+        nextBtn?.addEventListener("click", () => {
+          currentIndex =
+            currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+          updateSlider();
+        });
+        setInterval(() => {
+          currentIndex =
+            currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+          updateSlider();
+        }, 5000);
+      });
+    </script>
   </body>
 </html>
